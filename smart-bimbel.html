@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Bimbel Education – Bimbingan Belajar Terpercaya & Terjangkau</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --teal: #2BBFB3;
+    --teal-dark: #1A9E93;
+    --teal-darker: #12746B;
+    --teal-light: #E0F7F5;
+    --yellow: #F5E642;
+    --yellow-dark: #D4C800;
+    --white: #FFFFFF;
+    --off-white: #F8FFFE;
+    --dark: #1A2E2D;
+    --gray: #5A7170;
+    --gray-light: #8AADAB;
+    --ff-head: 'Nunito', sans-serif;
+    --ff-body: 'Poppins', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--ff-body); background: var(--white); color: var(--dark); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 12px 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(43,191,179,0.15);
+    border-bottom: 3px solid var(--teal);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo-text strong { display: block; font-family: var(--ff-head); font-size: 14px; font-weight: 900; color: var(--dark); }
+  .nav-logo-text em { display: block; font-size: 9px; font-style: italic; color: var(--teal-dark); font-family: var(--ff-body); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: var(--gray); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--teal); }
+  .nav-cta {
+    background: var(--yellow); color: var(--dark);
+    padding: 10px 22px; font-family: var(--ff-head); font-size: 13px; font-weight: 800;
+    border-radius: 30px; transition: all 0.2s; text-decoration: none; display: inline-block;
+  }
+  .nav-cta:hover { background: var(--yellow-dark); transform: translateY(-1px); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { display: block; width: 24px; height: 2.5px; background: var(--teal); border-radius: 2px; }
+  .mobile-menu { display: none; position: fixed; top: 77px; left: 0; width: 100%; background: var(--white); z-index: 99; padding: 20px 5%; flex-direction: column; gap: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); border-top: 2px solid var(--teal); }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { color: var(--dark); text-decoration: none; font-size: 16px; font-weight: 600; padding: 10px 0; border-bottom: 1px solid var(--teal-light); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 5% 80px; background: var(--teal);
+    position: relative; overflow: hidden;
+  }
+  .hero-blob1 { position: absolute; top: -100px; right: -100px; width: 450px; height: 450px; border-radius: 50%; background: rgba(255,255,255,0.07); pointer-events: none; }
+  .hero-blob2 { position: absolute; bottom: -80px; left: 30%; width: 280px; height: 280px; border-radius: 50%; background: rgba(255,255,255,0.05); pointer-events: none; }
+  .hero-eyebrow { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.8); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 20px; animation: fadeUp 0.7s ease both; }
+  .hero-h1 { font-family: var(--ff-head); font-size: clamp(40px, 7.5vw, 82px); line-height: 1.0; font-weight: 900; color: var(--white); margin-bottom: 0; animation: fadeUp 0.7s ease 0.1s both; }
+  .hero-h1b { font-family: var(--ff-head); font-size: clamp(40px, 7.5vw, 82px); line-height: 1.0; font-weight: 900; color: var(--white); margin-bottom: 18px; animation: fadeUp 0.7s ease 0.12s both; }
+  .hero-h1b .sbe { color: var(--yellow); }
+  .hero-line { width: 110px; height: 5px; background: var(--yellow); border-radius: 3px; margin-bottom: 24px; animation: fadeUp 0.7s ease 0.18s both; }
+  .hero-badge { display: inline-block; background: var(--yellow); color: var(--dark); font-family: var(--ff-head); font-size: 13px; font-weight: 800; padding: 8px 20px; border-radius: 30px; margin-bottom: 18px; animation: fadeUp 0.7s ease 0.22s both; }
+  .hero-desc { font-size: 15px; color: rgba(255,255,255,0.88); line-height: 1.8; max-width: 480px; margin-bottom: 12px; animation: fadeUp 0.7s ease 0.28s both; }
+  .hero-quote { font-family: var(--ff-head); font-size: 16px; font-weight: 700; color: var(--yellow); font-style: italic; margin-bottom: 40px; animation: fadeUp 0.7s ease 0.32s both; }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; animation: fadeUp 0.7s ease 0.38s both; }
+  .btn-yellow { background: var(--yellow); color: var(--dark); text-decoration: none; padding: 14px 32px; font-weight: 800; font-size: 14px; border-radius: 30px; transition: all 0.2s; display: inline-block; font-family: var(--ff-head); box-shadow: 0 4px 18px rgba(245,230,66,0.45); }
+  .btn-yellow:hover { background: var(--white); transform: translateY(-2px); }
+  .btn-outline-w { border: 2px solid rgba(255,255,255,0.6); color: var(--white); text-decoration: none; padding: 14px 32px; font-weight: 700; font-size: 14px; border-radius: 30px; transition: all 0.2s; display: inline-block; font-family: var(--ff-head); }
+  .btn-outline-w:hover { background: rgba(255,255,255,0.12); border-color: white; }
+  .hero-stats { display: flex; gap: 40px; margin-top: 52px; flex-wrap: wrap; animation: fadeUp 0.7s ease 0.45s both; }
+  .stat-num { font-family: var(--ff-head); font-size: 42px; color: var(--yellow); font-weight: 900; line-height: 1; }
+  .stat-label { font-size: 11px; color: rgba(255,255,255,0.72); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; }
+
+  /* WAVE */
+  .wave { display: block; width: 100%; line-height: 0; }
+
+  /* SECTION */
+  section { padding: 88px 5%; }
+  .sec-chip { display: inline-block; background: var(--teal-light); color: var(--teal-darker); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 14px; font-weight: 700; }
+  .sec-title { font-family: var(--ff-head); font-size: clamp(26px, 5vw, 46px); font-weight: 900; line-height: 1.1; color: var(--dark); margin-bottom: 12px; }
+  .sec-title span { color: var(--teal); }
+  .sec-line { width: 60px; height: 4px; background: var(--yellow); border-radius: 2px; margin: 10px 0 20px; }
+  .sec-sub { font-size: 15px; color: var(--gray); max-width: 520px; line-height: 1.8; }
+
+  /* PROGRAM */
+  #program { background: var(--white); }
+  .prog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 18px; margin-top: 48px; }
+  .prog-card { background: var(--white); padding: 28px 22px; border-radius: 16px; border: 2px solid var(--teal-light); transition: all 0.25s; display: flex; flex-direction: column; gap: 10px; position: relative; overflow: hidden; }
+  .prog-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--teal); transform: scaleX(0); transition: transform 0.3s; transform-origin: left; }
+  .prog-card:hover::after { transform: scaleX(1); }
+  .prog-card:hover { border-color: var(--teal); box-shadow: 0 8px 32px rgba(43,191,179,0.15); transform: translateY(-4px); }
+  .prog-icon { font-size: 30px; }
+  .prog-name { font-family: var(--ff-head); font-size: 17px; color: var(--dark); font-weight: 800; }
+  .prog-desc { font-size: 13px; color: var(--gray); line-height: 1.6; }
+  .prog-tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--teal-darker); background: var(--teal-light); padding: 3px 10px; border-radius: 20px; width: fit-content; }
+
+  /* JENJANG */
+  #jenjang { background: var(--teal); }
+  #jenjang .sec-chip { background: rgba(255,255,255,0.2); color: var(--white); }
+  #jenjang .sec-title { color: var(--white); }
+  #jenjang .sec-title span { color: var(--yellow); }
+  #jenjang .sec-line { background: var(--yellow); }
+  #jenjang .sec-sub { color: rgba(255,255,255,0.8); }
+  .jenj-row { display: flex; gap: 18px; margin-top: 48px; flex-wrap: wrap; }
+  .jenj-card { flex: 1; min-width: 150px; padding: 40px 20px; text-align: center; background: rgba(255,255,255,0.12); border-radius: 16px; border: 2px solid rgba(255,255,255,0.2); transition: all 0.3s; }
+  .jenj-card:hover { background: rgba(255,255,255,0.22); transform: translateY(-4px); border-color: var(--yellow); }
+  .jenj-lvl { font-family: var(--ff-head); font-size: 46px; color: var(--yellow); font-weight: 900; line-height: 1; }
+  .jenj-name { font-size: 13px; color: rgba(255,255,255,0.85); margin-top: 8px; font-weight: 500; }
+
+  /* KEUNGGULAN */
+  #keunggulan { background: var(--off-white); }
+  .ung-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; margin-top: 48px; align-items: start; }
+  .ung-big { background: var(--teal); padding: 44px 36px; border-radius: 20px; display: flex; flex-direction: column; gap: 14px; position: relative; overflow: hidden; }
+  .ung-big::before { content: ''; position: absolute; bottom: -50px; right: -50px; width: 180px; height: 180px; border-radius: 50%; background: rgba(255,255,255,0.07); }
+  .ung-big-lbl { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--yellow); font-weight: 700; }
+  .ung-big-title { font-family: var(--ff-head); font-size: 26px; font-weight: 900; color: var(--white); line-height: 1.2; }
+  .ung-big-desc { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.8; }
+  .ung-highlight { background: var(--yellow); color: var(--dark); padding: 10px 16px; border-radius: 8px; font-family: var(--ff-head); font-size: 13px; font-weight: 800; width: fit-content; }
+  .ung-list { display: flex; flex-direction: column; gap: 16px; }
+  .ung-item { display: flex; gap: 14px; align-items: flex-start; padding: 18px; background: var(--white); border-radius: 14px; border: 1.5px solid var(--teal-light); transition: all 0.2s; }
+  .ung-item:hover { border-color: var(--teal); box-shadow: 0 4px 16px rgba(43,191,179,0.1); }
+  .ung-num { width: 38px; height: 38px; background: var(--teal); color: var(--white); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: var(--ff-head); font-size: 15px; font-weight: 900; flex-shrink: 0; }
+  .ung-text h3 { font-size: 15px; color: var(--dark); font-weight: 700; margin-bottom: 4px; font-family: var(--ff-head); }
+  .ung-text p { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+  /* JADWAL */
+  #jadwal { background: var(--white); }
+  .jadwal-wrap { margin-top: 48px; display: grid; grid-template-columns: 1fr 1.5fr; border-radius: 20px; overflow: hidden; box-shadow: 0 8px 40px rgba(43,191,179,0.18); }
+  .jadwal-l { background: var(--teal); padding: 48px 36px; display: flex; flex-direction: column; justify-content: center; gap: 10px; }
+  .jadwal-l h3 { font-family: var(--ff-head); font-size: 24px; font-weight: 900; color: var(--white); }
+  .jadwal-l p { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.7; }
+  .jadwal-badge { display: inline-block; background: var(--yellow); color: var(--dark); font-size: 12px; font-weight: 800; padding: 6px 14px; border-radius: 20px; font-family: var(--ff-head); width: fit-content; margin-top: 8px; }
+  .jadwal-r { padding: 40px 40px; background: var(--white); display: flex; flex-direction: column; gap: 14px; justify-content: center; }
+  .jadwal-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1.5px dashed var(--teal-light); }
+  .jadwal-row:last-child { border-bottom: none; }
+  .jadwal-day { font-size: 14px; color: var(--gray); font-weight: 500; }
+  .jadwal-time { font-family: var(--ff-head); font-size: 18px; color: var(--teal-dark); font-weight: 800; }
+
+  /* CTA */
+  .cta-strip { background: var(--yellow); padding: 68px 5%; display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap; }
+  .cta-strip h2 { font-family: var(--ff-head); font-size: clamp(22px, 4vw, 38px); color: var(--dark); font-weight: 900; line-height: 1.2; max-width: 500px; }
+  .btn-teal { background: var(--teal); color: var(--white); text-decoration: none; padding: 16px 36px; font-weight: 800; font-size: 14px; border-radius: 30px; transition: all 0.2s; display: inline-block; font-family: var(--ff-head); white-space: nowrap; box-shadow: 0 4px 20px rgba(43,191,179,0.35); }
+  .btn-teal:hover { background: var(--teal-dark); transform: translateY(-2px); }
+
+  /* KONTAK */
+  #kontak { background: var(--off-white); }
+  .kontak-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; margin-top: 48px; }
+  .kontak-list { display: flex; flex-direction: column; gap: 22px; }
+  .kontak-item { display: flex; gap: 14px; align-items: flex-start; }
+  .kontak-icon { width: 44px; height: 44px; background: var(--teal); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .kontak-item h4 { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal-darker); margin-bottom: 4px; font-weight: 700; }
+  .kontak-item p { font-size: 14px; color: var(--gray); line-height: 1.7; }
+  .kontak-item a { color: var(--dark); text-decoration: none; font-weight: 600; transition: color 0.2s; }
+  .kontak-item a:hover { color: var(--teal); }
+  .map-wrap { border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(43,191,179,0.15); }
+  .map-wrap iframe { width: 100%; height: 360px; border: none; display: block; }
+
+  /* FOOTER */
+  footer { background: var(--dark); padding: 36px 5%; border-top: 4px solid var(--teal); }
+  .foot-inner { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .foot-brand { display: flex; align-items: center; gap: 10px; }
+  .foot-brand-name { font-family: var(--ff-head); font-size: 15px; color: var(--white); font-weight: 900; }
+  .foot-brand-tagline { font-size: 10px; color: var(--gray-light); font-style: italic; }
+  .foot-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  .foot-links a { font-size: 12px; color: var(--gray-light); text-decoration: none; font-weight: 600; transition: color 0.2s; }
+  .foot-links a:hover { color: var(--teal); }
+  .foot-copy { font-size: 12px; color: var(--gray-light); margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.07); text-align: center; width: 100%; }
+
+  /* WA */
+  .wa-btn { position: fixed; bottom: 28px; right: 28px; z-index: 999; background: #25D366; width: 58px; height: 58px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: 0 4px 24px rgba(37,211,102,0.45); text-decoration: none; transition: transform 0.2s; animation: wapulse 2s infinite; }
+  .wa-btn:hover { transform: scale(1.1); animation: none; }
+  .wa-btn svg { width: 28px; height: 28px; fill: white; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes wapulse { 0%,100% { box-shadow: 0 4px 24px rgba(37,211,102,0.45); } 50% { box-shadow: 0 4px 36px rgba(37,211,102,0.75); } }
+
+  @media (max-width: 900px) {
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .ung-wrap, .jadwal-wrap, .kontak-grid { grid-template-columns: 1fr; }
+    .jenj-row { gap: 12px; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 60px 5%; }
+    .jadwal-l, .jadwal-r { padding: 28px 24px; }
+    .cta-strip { padding: 48px 5%; }
+    .jenj-card { min-width: calc(50% - 6px); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <svg width="48" height="48" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="60" r="58" fill="white" stroke="#1A2E2D" stroke-width="3"/>
+      <circle cx="18" cy="50" r="10" fill="#1A2E2D"/>
+      <circle cx="60" cy="20" r="11" fill="#1A2E2D"/>
+      <circle cx="102" cy="50" r="10" fill="#1A2E2D"/>
+      <polygon points="18,52 60,26 102,52 92,80 28,80" fill="#1A2E2D"/>
+      <rect x="24" y="80" width="72" height="6" fill="white"/>
+      <rect x="24" y="86" width="72" height="22" rx="2" fill="#1A2E2D"/>
+    </svg>
+    <div class="nav-logo-text">
+      <strong>Smart Bimbel Education</strong>
+      <em>"If You Dream It, You Can Do It"</em>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#program">Program</a></li>
+    <li><a href="#jenjang">Jenjang</a></li>
+    <li><a href="#keunggulan">Keunggulan</a></li>
+    <li><a href="#jadwal">Jadwal</a></li>
+    <li><a href="#kontak">Kontak</a></li>
+  </ul>
+  <a class="nav-cta" href="https://wa.me/6285293043644?text=Halo%2C+saya+ingin+mendaftar+di+Smart+Bimbel+Education" target="_blank">Daftar Sekarang</a>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#program" onclick="toggleMenu()">Program</a>
+  <a href="#jenjang" onclick="toggleMenu()">Jenjang</a>
+  <a href="#keunggulan" onclick="toggleMenu()">Keunggulan</a>
+  <a href="#jadwal" onclick="toggleMenu()">Jadwal</a>
+  <a href="#kontak" onclick="toggleMenu()">Kontak</a>
+  <a href="https://wa.me/6285293043644?text=Halo%2C+saya+ingin+mendaftar+di+Smart+Bimbel+Education" target="_blank" style="color:var(--teal);font-weight:800;">Daftar Sekarang →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-blob1"></div>
+  <div class="hero-blob2"></div>
+  <p class="hero-eyebrow">✦ Banjarnegara, Jawa Tengah ✦</p>
+  <h1 class="hero-h1">Aku udah</h1>
+  <h1 class="hero-h1b">gabung di <span class="sbe">SBE</span></h1>
+  <div class="hero-line"></div>
+  <div class="hero-badge">🏆 Pilihan Bimbel Terpercaya &amp; Terjangkau</div>
+  <p class="hero-desc">Belajar lebih fokus dengan kelas kecil (3–6 siswa) dan metode yang disesuaikan dengan keunikanmu.</p>
+  <p class="hero-quote">"If You Dream It, You Can Do It"</p>
+  <div class="hero-actions">
+    <a class="btn-yellow" href="https://wa.me/6285293043644?text=Halo%2C+saya+ingin+mendaftar+di+Smart+Bimbel+Education" target="_blank">Daftar via WhatsApp 📲</a>
+    <a class="btn-outline-w" href="#program">Lihat Program →</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">4</div><div class="stat-label">Jenjang Pendidikan</div></div>
+    <div class="stat"><div class="stat-num">9+</div><div class="stat-label">Mata Pelajaran</div></div>
+    <div class="stat"><div class="stat-num">7</div><div class="stat-label">Hari Buka</div></div>
+    <div class="stat"><div class="stat-num">3–6</div><div class="stat-label">Siswa per Kelas</div></div>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" style="background:white;" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0,0 C360,60 1080,0 1440,40 L1440,0 L0,0 Z" fill="#2BBFB3"/>
+</svg>
+
+<!-- PROGRAM -->
+<section id="program">
+  <div class="sec-chip">Program Belajar</div>
+  <h2 class="sec-title">Pilih Program <span>yang Tepat</span></h2>
+  <div class="sec-line"></div>
+  <p class="sec-sub">Tersedia program privat dan kelompok dengan metode pembelajaran diferensiasi — disesuaikan dengan kebutuhan setiap siswa.</p>
+  <div class="prog-grid">
+    <div class="prog-card"><div class="prog-icon">📖</div><div class="prog-name">Calistung</div><div class="prog-desc">Membaca, menulis, dan berhitung untuk fondasi belajar yang kuat</div><div class="prog-tag">Dasar</div></div>
+    <div class="prog-card"><div class="prog-icon">➗</div><div class="prog-name">Matematika</div><div class="prog-desc">Dari operasi dasar hingga aljabar dan logika matematis</div><div class="prog-tag">Semua Jenjang</div></div>
+    <div class="prog-card"><div class="prog-icon">🌍</div><div class="prog-name">Bahasa Inggris</div><div class="prog-desc">Komunikasi, grammar, dan kosakata untuk era global</div><div class="prog-tag">Semua Jenjang</div></div>
+    <div class="prog-card"><div class="prog-icon">🔬</div><div class="prog-name">IPAS / IPA</div><div class="prog-desc">Ilmu Pengetahuan Alam dan Sosial secara menyenangkan</div><div class="prog-tag">SD – SMP</div></div>
+    <div class="prog-card"><div class="prog-icon">✍️</div><div class="prog-name">Bahasa Indonesia</div><div class="prog-desc">Tata bahasa, ejaan, dan kemampuan menulis efektif</div><div class="prog-tag">Semua Jenjang</div></div>
+    <div class="prog-card"><div class="prog-icon">🎤</div><div class="prog-name">Public Speaking</div><div class="prog-desc">Kepercayaan diri berbicara di depan umum sejak dini</div><div class="prog-tag">Unggulan</div></div>
+    <div class="prog-card"><div class="prog-icon">💻</div><div class="prog-name">Coding</div><div class="prog-desc">Pemrograman dasar untuk menyiapkan generasi digital</div><div class="prog-tag">Unggulan</div></div>
+    <div class="prog-card"><div class="prog-icon">🕌</div><div class="prog-name">Agama &amp; B. Arab</div><div class="prog-desc">Pendidikan agama dan penguasaan bahasa Arab</div><div class="prog-tag">Karakter</div></div>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" style="background:#2BBFB3;" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0,60 C360,0 1080,60 1440,20 L1440,60 L0,60 Z" fill="white"/>
+</svg>
+
+<!-- JENJANG -->
+<section id="jenjang">
+  <div class="sec-chip">Jenjang Pendidikan</div>
+  <h2 class="sec-title">Melayani <span>Semua Tingkatan</span></h2>
+  <div class="sec-line" style="background:var(--yellow);"></div>
+  <p class="sec-sub">3 tanda si kecil sudah masuk SBE: fokus meningkat, percaya diri menjawab soal, dan belajar secara konsisten.</p>
+  <div class="jenj-row">
+    <div class="jenj-card"><div class="jenj-lvl">TK</div><div class="jenj-name">Taman Kanak-Kanak</div></div>
+    <div class="jenj-card"><div class="jenj-lvl">SD</div><div class="jenj-name">Sekolah Dasar</div></div>
+    <div class="jenj-card"><div class="jenj-lvl">SMP</div><div class="jenj-name">Sekolah Menengah Pertama</div></div>
+    <div class="jenj-card"><div class="jenj-lvl">SMA</div><div class="jenj-name">Sekolah Menengah Atas</div></div>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" style="background:#F8FFFE;" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0,0 C360,60 1080,0 1440,40 L1440,0 L0,0 Z" fill="#2BBFB3"/>
+</svg>
+
+<!-- KEUNGGULAN -->
+<section id="keunggulan">
+  <div class="sec-chip">Keunggulan Kami</div>
+  <h2 class="sec-title">Mengapa <span>Smart Bimbel?</span></h2>
+  <div class="sec-line"></div>
+  <div class="ung-wrap">
+    <div class="ung-big">
+      <div class="ung-big-lbl">Metode Utama</div>
+      <div class="ung-big-title">Belajar Diferensiasi</div>
+      <div class="ung-big-desc">Setiap anak punya cara belajar yang unik. Kami menyesuaikan pendekatan dengan gaya, kecepatan, dan kebutuhan masing-masing siswa — bukan satu metode untuk semua.</div>
+      <div class="ung-highlight">Smart Bimbel siap dampingi anak raih potensi optimalnya 🌟</div>
+    </div>
+    <div class="ung-list">
+      <div class="ung-item"><div class="ung-num">01</div><div class="ung-text"><h3>Privat &amp; Kelompok</h3><p>Pilihan fleksibel: belajar intensif satu-satu atau bersama teman untuk motivasi lebih tinggi.</p></div></div>
+      <div class="ung-item"><div class="ung-num">02</div><div class="ung-text"><h3>Kelas Kecil 3–6 Siswa</h3><p>Perhatian tutor lebih fokus, bukan kelas besar yang membingungkan.</p></div></div>
+      <div class="ung-item"><div class="ung-num">03</div><div class="ung-text"><h3>Program Modern</h3><p>Coding dan Public Speaking — persiapan nyata untuk tantangan abad 21.</p></div></div>
+      <div class="ung-item"><div class="ung-num">04</div><div class="ung-text"><h3>Biaya Terjangkau</h3><p>Kualitas bimbel terbaik dengan harga ramah di kantong semua kalangan.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- JADWAL -->
+<section id="jadwal">
+  <div class="sec-chip">Jam Operasional</div>
+  <h2 class="sec-title">Kami Siap <span>Setiap Hari</span></h2>
+  <div class="sec-line"></div>
+  <div class="jadwal-wrap">
+    <div class="jadwal-l">
+      <h3>Senin – Minggu</h3>
+      <p>Buka setiap hari tanpa terkecuali untuk kenyamanan belajar siswa dan fleksibilitas orang tua.</p>
+      <div class="jadwal-badge">🕐 Buka 7 Hari Seminggu</div>
+    </div>
+    <div class="jadwal-r">
+      <div class="jadwal-row"><span class="jadwal-day">Senin – Jumat</span><span class="jadwal-time">11.00 – 18.00 WIB</span></div>
+      <div class="jadwal-row"><span class="jadwal-day">Sabtu</span><span class="jadwal-time">11.00 – 18.00 WIB</span></div>
+      <div class="jadwal-row"><span class="jadwal-day">Minggu</span><span class="jadwal-time">11.00 – 18.00 WIB</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <h2>Kamu Kapan? Daftarkan Dirimu Sekarang! 🎓</h2>
+  <a class="btn-teal" href="https://wa.me/6285293043644?text=Halo%2C+saya+ingin+mendaftar+di+Smart+Bimbel+Education" target="_blank">Hubungi via WhatsApp →</a>
+</div>
+
+<!-- KONTAK -->
+<section id="kontak">
+  <div class="sec-chip">Lokasi &amp; Kontak</div>
+  <h2 class="sec-title">Temukan <span>Kami</span></h2>
+  <div class="sec-line"></div>
+  <div class="kontak-grid">
+    <div class="kontak-list">
+      <div class="kontak-item"><div class="kontak-icon">📍</div><div><h4>Alamat</h4><p>Dusun Sidareja RT 05 RW 07, Desa Purwareja, Kec. Purwareja Klampok, Banjarnegara, Jawa Tengah</p></div></div>
+      <div class="kontak-item"><div class="kontak-icon">📱</div><div><h4>WhatsApp / Telepon</h4><p><a href="https://wa.me/6285293043644" target="_blank">+62 852-9304-3644</a></p></div></div>
+      <div class="kontak-item"><div class="kontak-icon">✉️</div><div><h4>Email</h4><p><a href="mailto:education.smartbimbel@gmail.com">education.smartbimbel@gmail.com</a></p></div></div>
+      <div class="kontak-item"><div class="kontak-icon">📸</div><div><h4>Instagram</h4><p><a href="https://instagram.com/smartbimbel.education" target="_blank">@smartbimbel.education</a></p></div></div>
+      <div class="kontak-item"><div class="kontak-icon">🗺️</div><div><h4>Google Maps</h4><p><a href="https://maps.app.goo.gl/h34hqEES5nZURDnHA" target="_blank">Buka di Google Maps →</a></p></div></div>
+    </div>
+    <div class="map-wrap">
+      <iframe src="https://maps.google.com/maps?q=Purwareja+Klampok+Banjarnegara&output=embed&z=15" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <svg width="38" height="38" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="60" cy="60" r="58" fill="#2BBFB3"/>
+        <circle cx="18" cy="50" r="10" fill="white"/>
+        <circle cx="60" cy="20" r="11" fill="white"/>
+        <circle cx="102" cy="50" r="10" fill="white"/>
+        <polygon points="18,52 60,26 102,52 92,80 28,80" fill="white"/>
+        <rect x="24" y="80" width="72" height="6" fill="#2BBFB3"/>
+        <rect x="24" y="86" width="72" height="22" rx="2" fill="white"/>
+      </svg>
+      <div>
+        <div class="foot-brand-name">Smart Bimbel Education</div>
+        <div class="foot-brand-tagline">"If You Dream It, You Can Do It"</div>
+      </div>
+    </div>
+    <div class="foot-links">
+      <a href="https://instagram.com/smartbimbel.education" target="_blank">📸 Instagram</a>
+      <a href="mailto:education.smartbimbel@gmail.com">✉️ Email</a>
+      <a href="https://wa.me/6285293043644" target="_blank">📱 WhatsApp</a>
+      <a href="https://maps.app.goo.gl/h34hqEES5nZURDnHA" target="_blank">🗺️ Maps</a>
+    </div>
+    <div class="foot-copy">© 2025 Smart Bimbel Education · Banjarnegara, Jawa Tengah · Daftarkan dirimu: smartbimbel.education</div>
+  </div>
+</footer>
+
+<!-- WA FLOAT -->
+<a class="wa-btn" href="https://wa.me/6285293043644?text=Halo%2C+saya+ingin+mendaftar+di+Smart+Bimbel+Education" target="_blank" aria-label="Chat WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+</script>
+</body>
+</html>
